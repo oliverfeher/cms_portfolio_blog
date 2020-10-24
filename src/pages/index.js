@@ -8,12 +8,10 @@ import renderHelper from '../utils/renderHelper';
 const IndexPage = () => {
 
   const transformArray = (array) => {
-    console.log(array);
     for (let i = 0; i < array.length; i++) {
         if (array[i].fieldGroupName) {
             array[i].fieldGroupName = array[i].fieldGroupName.replace('post_Pageblocks_Blocks_', '');
         }
-        console.log(array[i].fieldGroupName)
       }
       return array;
     }
@@ -44,7 +42,7 @@ const IndexPage = () => {
   `);
   
   const normalizedArray = transformArray(indexPageData.wpPost.pageBlocks.blocks);
-  
+
   return (
     <Layout>
       <div>
