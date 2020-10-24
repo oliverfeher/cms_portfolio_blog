@@ -6,9 +6,11 @@ import '../assets/style.css';
 
 const Layout = ({ children }) => {
   return (
-    <div>
-      {children}
-    </div>
+    <>
+      <div>header</div>
+        {children}
+      <div>footer</div>
+    </>
   )
 }
 

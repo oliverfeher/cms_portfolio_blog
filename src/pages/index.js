@@ -3,60 +3,57 @@ import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import Layout from '../components/layout';
+import renderHelper from '../utils/renderHelper';
 
-const Index = () => {
+const IndexPage = () => {
 
+  const transformArray = (array) => {
+    console.log(array);
+    for (let i = 0; i < array.length; i++) {
+        if (array[i].fieldGroupName) {
+            array[i].fieldGroupName = array[i].fieldGroupName.replace('post_Pageblocks_Blocks_', '');
+        }
+        console.log(array[i].fieldGroupName)
+      }
+      return array;
+    }
+    
     const indexPageData = useStaticQuery(graphql`
     query MenusQuery {
-      allWpPost {
-        nodes {
-          pageBlocks {
-            blocks {
-              ... on WpPost_Pageblocks_Blocks_Title {
-                fieldGroupName
-                title
-              }
-              ... on WpPost_Pageblocks_Blocks_TextEditor {
-                fieldGroupName
-                text
-              }
-              ... on WpPost_Pageblocks_Blocks_Image {
-                fieldGroupName
-                image {
-                  mediaItemUrl
-                }
+      wpPost(slug: {eq: "this-is-my-first-post"}) {
+        pageBlocks {
+          blocks {
+            ... on WpPost_Pageblocks_Blocks_Title {
+              fieldGroupName
+              title
+            }
+            ... on WpPost_Pageblocks_Blocks_TextEditor {
+              fieldGroupName
+              text
+            }
+            ... on WpPost_Pageblocks_Blocks_Image {
+              fieldGroupName
+              image {
+                mediaItemUrl
               }
             }
           }
         }
       }
-      }
-    `)
-    console.log(indexPageData)
-
-    const renderHTML = (string) => {
-      return {__html: string};
     }
-
+  `);
+  
+  const normalizedArray = transformArray(indexPageData.wpPost.pageBlocks.blocks);
+  
   return (
     <Layout>
       <div>
-        {indexPageData.allWpPost.nodes[0].pageBlocks.blocks.map((block, idx) => {
-          if(block.fieldGroupName.includes('Image')) {
-            return (
-              <img src={block.image.mediaItemUrl} alt="" key={idx}/>
-            )
-          } else if(block.fieldGroupName.includes('TextEditor')) {
-            return (
-              <div dangerouslySetInnerHTML={renderHTML(block.text)} key={idx}></div>
-            )
-          }
-        })}
+        {normalizedArray.map((block, idx) => renderHelper(block, idx))}
       </div>
     </Layout>
   )
 };
 
-export default Index;
+export default IndexPage;
 
 
