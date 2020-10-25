@@ -10,6 +10,7 @@ require("dotenv").config({
 module.exports = {
   plugins: [
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sass`
     {
       resolve: `gatsby-source-filesystem`,
       options: {

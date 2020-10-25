@@ -16,38 +16,17 @@ const IndexPage = () => {
       return array;
     }
     
-    const indexPageData = useStaticQuery(graphql`
-    query MenusQuery {
-      wpPost(slug: {eq: "this-is-my-first-post"}) {
-        pageBlocks {
-          blocks {
-            ... on WpPost_Pageblocks_Blocks_Title {
-              fieldGroupName
-              title
-            }
-            ... on WpPost_Pageblocks_Blocks_TextEditor {
-              fieldGroupName
-              text
-            }
-            ... on WpPost_Pageblocks_Blocks_Image {
-              fieldGroupName
-              image {
-                mediaItemUrl
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
+  //   const indexPageData = useStaticQuery(graphql`
+    
+  // `)
   
-  const normalizedArray = transformArray(indexPageData.wpPost.pageBlocks.blocks);
+  // const normalizedArray = transformArray(indexPageData.wpPost.pageBlocks.blocks);
+  // {normalizedArray.map((block, idx) => renderHelper(block, idx))}
 
   return (
     <Layout>
-      <div>
-        {normalizedArray.map((block, idx) => renderHelper(block, idx))}
-      </div>
+      <main>
+      </main>
     </Layout>
   )
 };
