@@ -135,3 +135,31 @@ body {
       transform: scale3d(1, 1, 1);
     }
   }
+
+  @media(max-width: 645px) {
+    #gatsby-focus-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        min-height: 100vh;
+        max-height: 100vh;
+        width: 100%;
+        margin: auto;
+    
+        main {
+            width: 100%;
+            .menus-container {
+                display: none;
+            }
+        }
+        footer {
+            position: absolute;
+            bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+    }
+  }

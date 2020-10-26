@@ -1,52 +1,28 @@
 // DEPENDENCY IMPORTS
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql, Link } from 'gatsby';
 
 // ASSET/COMPONENT IMPORTS
-import social1 from '../assets/svg/github-svg.svg';
-import social2 from '../assets/svg/linkedin-svg.svg';
-import social3 from '../assets/svg/twitter-svg.svg';
+import { social } from '../utils/social';
+import { menus } from '../utils/menus';
 import Layout from '../components/layout';
 
 const IndexPage = ({ data }) => {
-
-  const menus = [
-    {
-      label: 'About',
-      url: '/about'
-    },
-    {
-      label: 'Blog',
-      url: '/blog'
-    },
-    {
-      label: 'Contact',
-      url: '/contact'
-    }
-  ]
-
-  const social = [
-    {
-      image: social1,
-      url: 'https://github.com/oliverfeher',
-    },
-    {
-      image: social2,
-      url: 'https://www.linkedin.com/in/oliver-feher-10093912a/',
-    },
-    {
-      image: social3,
-      url: 'https://twitter.com/Oliver92F',
-    },
-  ]
 
   const renderHTML = (string) => {
     return {__html: string};
   }
 
   const [ portraits ] = useState(data.wpPage.pageBlocks.pageblocks[0].pictures);
-  const [ currentPortrait, setCurrentPortraits ] = useState(portraits[2].sourceUrl)
+  const [ currentPortrait, setCurrentPortraits ] = useState(portraits[2].sourceUrl);
 
+  useEffect(() => {
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      setInterval(() => setCurrentPortraits(portraits[Math.floor(Math.random() * Math.floor(3)) + 1].sourceUrl), 3000)
+    }
+  }, [portraits])
+
+  // MENUITEM HOVERS
   const menuHover = (e) => {
     switch(e.target.innerText) {
       case "About":
@@ -93,6 +69,8 @@ const IndexPage = ({ data }) => {
 };
 
 export default IndexPage;
+
+// GRAPHQL QUERY
 
 export const query = graphql`
   query IndexQuery {
