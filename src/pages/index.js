@@ -5,6 +5,8 @@ import { graphql, Link } from 'gatsby';
 // ASSET/COMPONENT IMPORTS
 import { social } from '../utils/social';
 import { menus } from '../utils/menus';
+import Hamburger from '../assets/svg/hamburger-lines.svg';
+import HamburgerX from '../assets/svg/hamburger-x-svg.svg';
 import Layout from '../components/layout';
 
 const IndexPage = ({ data }) => {
@@ -15,6 +17,7 @@ const IndexPage = ({ data }) => {
 
   const [ portraits ] = useState(data.wpPage.pageBlocks.pageblocks[0].pictures);
   const [ currentPortrait, setCurrentPortraits ] = useState(portraits[2].sourceUrl);
+  const [ menuClicked, setMenuClicked ] = useState(false);
 
   useEffect(() => {
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -40,10 +43,31 @@ const IndexPage = ({ data }) => {
     }
   }
 
+  const toggleMenu = () => {
+    return (
+      <div className="menu-overlay">
+        <p>oliverfeher.com</p>
+        <button className="menu-close" onClick={() => setMenuClicked(false)}>
+          <img src={HamburgerX} alt="hamburger menu close" />
+        </button>
+        {menus.map((menu, idx) => {
+          return (
+            <Link className="mobile-menu-item" to={menu.url} key={idx} onMouseLeave={()=> setCurrentPortraits(portraits[2].sourceUrl)} onMouseEnter={menuHover}>{menu.label}</Link>
+          )
+        })}
+      </div>
+    )
+  }
 
   return (
     <Layout>
       <main>
+        <button className="menu" onClick={() => setMenuClicked(true)}>
+          <img src={Hamburger} alt="hamburger menu" />
+        </button>
+
+        {menuClicked ? toggleMenu() : null}
+
         <div className="portrait-container">
           <img src={currentPortrait} alt="portrait headshot" />
         </div>
