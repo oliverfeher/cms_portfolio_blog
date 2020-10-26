@@ -4,7 +4,7 @@ import React from 'react';
 //  COMPONENT IMPORTS
 import Footer from './Footer';
 // STYELSHEET IMPORT
-import '../assets/style.css';
+import '../assets/style.scss';
 
 const Layout = ({ children }) => {
   return (
