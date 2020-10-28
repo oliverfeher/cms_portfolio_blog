@@ -8,17 +8,22 @@ import { menus } from '../utils/menus';
 import Hamburger from '../assets/svg/hamburger-lines.svg';
 import HamburgerX from '../assets/svg/hamburger-x-svg.svg';
 import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 const IndexPage = ({ data }) => {
+
+  console.log(data);
 
   const renderHTML = (string) => {
     return {__html: string};
   }
 
+  // STATES
   const [ portraits ] = useState(data.wpPage.pageBlocks.pageblocks[0].pictures);
   const [ currentPortrait, setCurrentPortraits ] = useState(portraits[2].sourceUrl);
   const [ menuClicked, setMenuClicked ] = useState(false);
 
+  // DEVICE DETECT
   useEffect(() => {
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
       setInterval(() => setCurrentPortraits(portraits[Math.floor(Math.random() * Math.floor(3)) + 1].sourceUrl), 3000)
@@ -39,7 +44,6 @@ const IndexPage = ({ data }) => {
         break;
       default:
         setCurrentPortraits(portraits[2].sourceUrl);
-
     }
   }
 
@@ -61,6 +65,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
+      <SEO  data={data.wpPage.meta_data}/>
       <main>
         <button className="menu" onClick={() => setMenuClicked(true)}>
           <img src={Hamburger} alt="hamburger menu" />
@@ -99,6 +104,13 @@ export default IndexPage;
 export const query = graphql`
   query IndexQuery {
     wpPage(slug: {eq: "index-data"}) {
+      meta_data {
+        description
+        title
+        image {
+          mediaItemUrl
+        }
+      }
       pageBlocks {
         pageblocks {
           ... on WpPage_Pageblocks_Pageblocks_TextEditor {
