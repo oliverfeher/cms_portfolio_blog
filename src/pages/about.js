@@ -11,7 +11,7 @@ const AboutPage = ({ data }) => {
 
     return (
         <Layout hideNav={false} seoData={data.wpPage.meta_data}>
-            <main className="about-container">
+            <main id="about-container">
                 <div className="about-hero-container">
                     <div className="about-image-container">
                         <h2>About</h2>

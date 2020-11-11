@@ -1,4 +1,4 @@
-.about-container{
+#about-container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +48,7 @@
     }
 
     .resume {
-        margin: 4rem;
+        margin-top: 4rem;
         position: relative;
 
         .resume-button {
@@ -75,5 +75,36 @@
             top: -5.5rem;
             z-index: -2;
         }
+    }
+}
+
+@media(max-width: 950px) {
+    #gatsby-focus-wrapper {
+        #about-container {
+            .about-hero-container {
+                margin-top: 5rem;
+                width: 70%;
+            }
+            .about-image-container {
+                width: 8rem;
+                height: 8rem;
+
+                h2 {
+                    font-size: 2rem;
+                    right: -2.5rem;
+                }
+            }
+
+            .about-description {
+                width: 80%;
+                p {
+                    font-size: 1.1rem;
+                }
+            }
+
+            .resume {
+                margin-bottom: 7rem;
+            }
+        } 
     }
 }
