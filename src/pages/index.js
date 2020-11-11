@@ -66,7 +66,8 @@ const IndexPage = ({ data }) => {
   return (
     <Layout hideNav={true} >
       <SEO  data={data.wpPage.meta_data}/>
-        <button className="menu" onClick={() => setMenuClicked(true)}>
+      <main>
+        <button className="menu-index" onClick={() => setMenuClicked(true)}>
           <img src={Hamburger} alt="hamburger menu" />
         </button>
 
@@ -91,6 +92,7 @@ const IndexPage = ({ data }) => {
             return <a key={idx} rel="noreferrer" target="_blank" href={icon.url}><img src={icon.image} alt="social icon" /></a>
           })}
         </div>
+      </main>
     </Layout>
   )
 };

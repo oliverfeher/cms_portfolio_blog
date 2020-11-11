@@ -12,10 +12,10 @@ const Layout = ({ children, hideNav }) => {
   const layoutStyle = {
     width: '100%',
   }
-
+console.log(hideNav);
   return (
     <main className="main-content-extension" style={layoutStyle}>
-      {hideNav ? null : <Header />}
+      {hideNav ? null : <Header/>}
         {children}
       <Footer />
     </main>
