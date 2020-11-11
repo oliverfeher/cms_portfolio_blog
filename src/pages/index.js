@@ -80,7 +80,7 @@ const IndexPage = ({ data }) => {
         <div className="intro-wysiwyg" dangerouslySetInnerHTML={renderHTML(data.wpPage.pageBlocks.pageblocks[1].text)} />
 
         <div className="menus-container">
-          {menus.map((menu, idx) => {
+          {menus.slice(1).map((menu, idx) => {
             return (
               <Link className="menu-item" to={menu.url} key={idx} onMouseLeave={()=> setCurrentPortraits(portraits[2].sourceUrl)} onMouseEnter={menuHover}>{menu.label}</Link>
             )
