@@ -32,7 +32,7 @@ const Header = ({ data }) => {
                             <img src={HamburgerX} alt="hambuger-menu-close" />
                         </button>
                         {menus.map((menu, idx) => <Link className="mobile-menu-item" to={menu.url} key={idx}>{menu.label}</Link>)}
-                        <p style={{position: 'absolute', bottom: '0'}}>oliverfeher.com</p>
+                        <p>oliverfeher.com</p>
                     </div>
                 </>
                 : null
