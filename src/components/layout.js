@@ -4,21 +4,24 @@ import React from 'react';
 //  COMPONENT IMPORTS
 import Footer from './Footer';
 import Header from './Header';
+import Seo from "./seo"
 // STYELSHEET IMPORT
 import '../assets/style.scss';
 
-const Layout = ({ children, hideNav }) => {
+const Layout = ({ children, hideNav, seoData }) => {
 
   const layoutStyle = {
     width: '100%',
   }
-console.log(hideNav);
   return (
-    <main className="main-content-extension" style={layoutStyle}>
-      {hideNav ? null : <Header/>}
-        {children}
-      <Footer />
-    </main>
+    <> 
+      {seoData ? <Seo data={seoData}/> : null}
+      <main className="main-content-extension" style={layoutStyle}>
+        {hideNav ? null : <Header/>}
+          {children}
+        <Footer />
+      </main>
+    </>
   )
 }
 

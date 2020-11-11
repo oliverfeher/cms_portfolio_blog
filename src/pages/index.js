@@ -8,7 +8,6 @@ import { menus } from '../utils/menus';
 import Hamburger from '../assets/svg/hamburger-lines.svg';
 import HamburgerX from '../assets/svg/hamburger-x-svg.svg';
 import Layout from '../components/layout';
-import SEO from '../components/seo';
 
 const IndexPage = ({ data }) => {
 
@@ -64,8 +63,7 @@ const IndexPage = ({ data }) => {
   }
 
   return (
-    <Layout hideNav={true} >
-      <SEO  data={data.wpPage.meta_data}/>
+    <Layout hideNav={true} seoData={data.wpPage.meta_data}>
       <main>
         <button className="menu-index" onClick={() => setMenuClicked(true)}>
           <img src={Hamburger} alt="hamburger menu" />
