@@ -11,8 +11,6 @@ import Layout from '../components/layout';
 
 const IndexPage = ({ data }) => {
 
-  console.log(data);
-
   const renderHTML = (string) => {
     return {__html: string};
   }

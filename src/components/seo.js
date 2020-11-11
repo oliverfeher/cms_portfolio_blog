@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
+import favicon from '../assets/images/about.png'
 
 function SEO({ data }) {
   return (
     <Helmet title={data.title}>
+      <link rel="icon" type="image/png" href={favicon} sizes="16x16" />
       { data.description ? <meta name="description" content={data.description} /> : null }
       { data.title ? <meta name="og:title" content={data.title} /> : null }
       { data.description ? <meta name="og:description" content={data.description} /> : null }
