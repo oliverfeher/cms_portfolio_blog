@@ -4,6 +4,8 @@ import { navigate } from '@reach/router';
 
 import { graphql } from 'gatsby';
 
+import portraitImage from '../assets/images/index.5png';
+
 export default ({ data }) => {
     
     useEffect(() => {
@@ -18,7 +20,7 @@ export default ({ data }) => {
         <Layout>
             <main>
                 <div className="portrait-container">
-                    <img src={data.wpPage.pageBlocks.pageblocks[1].pictures[0].sourceUrl} alt="portrait headshot" />
+                    <img src={portraitImage} alt="portrait headshot" />
                 </div>
 
                 <div className="intro-wysiwyg" dangerouslySetInnerHTML={renderHTML(data.wpPage.pageBlocks.pageblocks[0].text)} />
@@ -35,12 +37,6 @@ export const query = graphql`
           ... on WpPage_Pageblocks_Pageblocks_TextEditor {
             text
             fieldGroupName
-          }
-          ... on WpPage_Pageblocks_Pageblocks_Pictures {
-            fieldGroupName
-            pictures {
-              sourceUrl
-            }
           }
         }
       }

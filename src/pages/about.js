@@ -6,6 +6,7 @@ import '../components/about.scss';
 
 import Pic from '../assets/images/about.png';
 import ResumePic from '../assets/images/about-resume-pic.png';
+import Resume from '../assets/resume.pdf';
 
 const AboutPage = ({ data }) => {
 
@@ -25,7 +26,7 @@ const AboutPage = ({ data }) => {
 
                 <div className="resume">
                     <img src={ResumePic} className="resume-pic"/>
-                    <a className="resume-button" href={data.wpPage.pageBlocks.pageblocks[1].pictures[0].mediaItemUrl}>
+                    <a className="resume-button" href={Resume}>
                         <p>Resume</p>
                     </a>
                 </div>

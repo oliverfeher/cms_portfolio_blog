@@ -3,6 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { graphql, Link } from 'gatsby';
 
 // ASSET/COMPONENT IMPORTS
+import index1 from '../assets/images/index1.png'
+import index2 from '../assets/images/index2.png'
+import index3 from '../assets/images/index3.png'
+import index4 from '../assets/images/index4.png'
 import { social } from '../utils/social';
 import { menus } from '../utils/menus';
 import Hamburger from '../assets/svg/hamburger-lines.svg';
@@ -16,14 +20,14 @@ const IndexPage = ({ data }) => {
   }
 
   // STATES
-  const [ portraits ] = useState(data.wpPage.pageBlocks.pageblocks[0].pictures);
-  const [ currentPortrait, setCurrentPortraits ] = useState(portraits[2].sourceUrl);
+  const [ portraits ] = useState([index1, index2, index3, index4]);
+  const [ currentPortrait, setCurrentPortraits ] = useState(portraits[2]);
   const [ menuClicked, setMenuClicked ] = useState(false);
 
   // DEVICE DETECT
   useEffect(() => {
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-      setInterval(() => setCurrentPortraits(portraits[Math.floor(Math.random() * Math.floor(3)) + 1].sourceUrl), 3000)
+      setInterval(() => setCurrentPortraits(portraits[Math.floor(Math.random() * Math.floor(3))]), 3000)
     }
   }, [portraits])
 
@@ -31,16 +35,16 @@ const IndexPage = ({ data }) => {
   const menuHover = (e) => {
     switch(e.target.innerText) {
       case "About":
-        setCurrentPortraits(portraits[1].sourceUrl);
+        setCurrentPortraits(portraits[1]);
         break;
       case "Blog":
-        setCurrentPortraits(portraits[0].sourceUrl);
+        setCurrentPortraits(portraits[0]);
         break;
       case "Contact":
-        setCurrentPortraits(portraits[3].sourceUrl);
+        setCurrentPortraits(portraits[3]);
         break;
       default:
-        setCurrentPortraits(portraits[2].sourceUrl);
+        setCurrentPortraits(portraits[2]);
     }
   }
 
@@ -53,7 +57,7 @@ const IndexPage = ({ data }) => {
         </button>
         {menus.map((menu, idx) => {
           return (
-            <Link className="mobile-menu-item" to={menu.url} key={idx} onMouseLeave={()=> setCurrentPortraits(portraits[2].sourceUrl)} onMouseEnter={menuHover}>{menu.label}</Link>
+            <Link className="mobile-menu-item" to={menu.url} key={idx} onMouseLeave={()=> setCurrentPortraits(portraits[2])} onMouseEnter={menuHover}>{menu.label}</Link>
           )
         })}
       </div>
@@ -78,7 +82,7 @@ const IndexPage = ({ data }) => {
         <div className="menus-container">
           {menus.slice(1).map((menu, idx) => {
             return (
-              <Link className="menu-item" to={menu.url} key={idx} onMouseLeave={()=> setCurrentPortraits(portraits[2].sourceUrl)} onMouseEnter={menuHover}>{menu.label}</Link>
+              <Link className="menu-item" to={menu.url} key={idx} onMouseLeave={()=> setCurrentPortraits(portraits[2])} onMouseEnter={menuHover}>{menu.label}</Link>
             )
           })}
         </div>

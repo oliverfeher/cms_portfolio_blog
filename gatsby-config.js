@@ -24,7 +24,7 @@ module.exports = {
       options: {
         url:
           process.env.WPGRAPHQL_URL ||
-          `http://34.236.146.211/graphql`,
+          `http://54.174.83.126/graphql`,
         verbose: true,
         develop: {
           hardCacheMediaFiles: true,
